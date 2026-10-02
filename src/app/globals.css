@@ -7,13 +7,8 @@
   --color-brand-lime: #ccff00;
   --color-brand-lime-hover: #b8e600;
   --color-brand-lime-muted: rgba(204, 255, 0, 0.12);
-<<<<<<< HEAD
   --color-brand-lime-type: #ccff00;
   --shadow-brand-lime-type: 0 0 32px rgba(204, 255, 0, 0.32);
-=======
-  --color-brand-lime-type: #c5d56e;
-  --shadow-brand-lime-type: 0 0 8px rgba(204, 255, 0, 0.14);
->>>>>>> ea2baad096208a0a27fb9ff3b0f0f92bce259886
   --color-brand-gray: #9ba0aa;
   --color-brand-border: #1f2026;
   --color-brand-border-light: #2c2e38;
@@ -58,7 +53,6 @@ body {
   text-shadow: var(--shadow-brand-lime-type);
 }
 
-<<<<<<< HEAD
 .project-showcase {
   position: relative;
   z-index: 0;
@@ -90,8 +84,6 @@ body {
   }
 }
 
-=======
->>>>>>> ea2baad096208a0a27fb9ff3b0f0f92bce259886
 /* Craft Floor: Themed Browser Surfaces */
 ::selection {
   background-color: #ccff00;
