@@ -19,6 +19,7 @@ export const es: SiteContent = {
     ],
   },
   nav: {
+    home: 'INICIO',
     work: 'PROYECTOS',
     services: 'SERVICIOS',
     about: 'NOSOTROS',

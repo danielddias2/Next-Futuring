@@ -11,8 +11,10 @@ export function Hero() {
 
   return (
     <section
+      id="home"
+      tabIndex={-1}
       aria-label="Hero Introduction"
-      className="relative min-h-[92vh] sm:min-h-screen pt-28 sm:pt-32 lg:pt-36 pb-16 lg:pb-24 flex flex-col justify-between overflow-hidden bg-[#050505]"
+      className="relative min-h-[92vh] sm:min-h-screen pt-28 sm:pt-32 lg:pt-36 pb-16 lg:pb-24 flex flex-col justify-between overflow-hidden bg-[#050505] focus:outline-none"
     >
       {/* BACKGROUND ATMOSPHERE: Subtle Architectural Grid & Tech Markings */}
       <div className="absolute inset-0 pointer-events-none bg-grid-pattern opacity-15" />
@@ -67,7 +69,7 @@ export function Hero() {
             {/* Call To Action Buttons */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-12 sm:mb-14">
               <Link
-                href="#contact"
+                href="/#contact"
                 className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#ccff00] hover:bg-[#d8ff1a] text-black font-display font-black text-base sm:text-lg tracking-wider uppercase transition-all duration-200 shadow-[0_0_30px_rgba(204,255,0,0.3)] hover:shadow-[0_0_40px_rgba(204,255,0,0.5)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
                 <span>{content.hero.primaryCta}</span>
@@ -75,7 +77,7 @@ export function Hero() {
               </Link>
 
               <Link
-                href="#work"
+                href="/#projects"
                 className="group inline-flex items-center justify-center gap-3 px-7 py-4 bg-[#0a0a0d] hover:bg-[#121217] text-white border border-[#22222a] hover:border-[#ccff00]/60 font-display font-bold text-base sm:text-lg tracking-wider uppercase transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ccff00]"
               >
                 <span>{content.hero.secondaryCta}</span>

@@ -45,8 +45,9 @@ export function CtaConversion() {
   return (
     <section
       id="contact"
+      tabIndex={-1}
       aria-label="Conversion Call to Action"
-      className="relative py-24 sm:py-32 lg:py-40 bg-[#060608] border-t border-[#181820] overflow-hidden"
+      className="scroll-mt-24 relative py-24 sm:py-32 lg:py-40 bg-[#060608] border-t border-[#181820] overflow-hidden focus:outline-none"
     >
       {/* Background Neon Ambient Glow */}
       <div

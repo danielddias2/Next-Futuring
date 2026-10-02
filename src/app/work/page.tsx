@@ -50,7 +50,7 @@ export default function WorkPage() {
           </div>
 
           <Link
-            href="/#work"
+            href="/#projects"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#ccff00] text-black font-display font-bold text-sm tracking-wider uppercase whitespace-nowrap hover:bg-[#d8ff1a] transition-colors"
           >
             <span>VIEW FEATURED CASES</span>

@@ -27,6 +27,7 @@ export interface SiteContent {
     keywords: string[];
   };
   nav: {
+    home: string;
     work: string;
     services: string;
     about: string;

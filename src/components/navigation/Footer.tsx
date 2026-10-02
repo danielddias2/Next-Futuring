@@ -54,22 +54,27 @@ export function Footer() {
               </div>
               <ul className="space-y-2.5 text-sm font-display uppercase tracking-wider text-zinc-400">
                 <li>
-                  <Link href="#work" className="hover:text-white transition-colors">
+                  <Link href="/#home" className="hover:text-white transition-colors">
+                    {content.nav.home}
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#projects" className="hover:text-white transition-colors">
                     {content.nav.work}
                   </Link>
                 </li>
                 <li>
-                  <Link href="#services" className="hover:text-white transition-colors">
+                  <Link href="/#services" className="hover:text-white transition-colors">
                     {content.nav.services}
                   </Link>
                 </li>
                 <li>
-                  <Link href="#manifesto" className="hover:text-white transition-colors">
+                  <Link href="/#about" className="hover:text-white transition-colors">
                     {content.nav.about}
                   </Link>
                 </li>
                 <li>
-                  <Link href="#contact" className="hover:text-white transition-colors">
+                  <Link href="/#contact" className="hover:text-white transition-colors">
                     {content.nav.contact}
                   </Link>
                 </li>
@@ -96,12 +101,12 @@ export function Footer() {
               </div>
               <ul className="space-y-2 text-xs font-mono text-zinc-400 uppercase">
                 <li>
-                  <a href="#contact" className="hover:text-white transition-colors">
+                  <a href="/#contact" className="hover:text-white transition-colors">
                     {content.footer.privacy}
                   </a>
                 </li>
                 <li>
-                  <a href="#contact" className="hover:text-white transition-colors">
+                  <a href="/#contact" className="hover:text-white transition-colors">
                     {content.footer.terms}
                   </a>
                 </li>
