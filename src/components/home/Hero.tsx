@@ -56,7 +56,7 @@ export function Hero() {
               <span className="block text-zinc-400">
                 {content.hero.titleLine2}
               </span>
-              <span className="block text-[#ccff00] drop-shadow-[0_0_35px_rgba(204,255,0,0.35)]">
+              <span className="block text-brand-neon">
                 {content.hero.titleHighlight}
               </span>
             </h1>

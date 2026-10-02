@@ -7,6 +7,8 @@
   --color-brand-lime: #ccff00;
   --color-brand-lime-hover: #b8e600;
   --color-brand-lime-muted: rgba(204, 255, 0, 0.12);
+  --color-brand-lime-type: #c5d56e;
+  --shadow-brand-lime-type: 0 0 8px rgba(204, 255, 0, 0.14);
   --color-brand-gray: #9ba0aa;
   --color-brand-border: #1f2026;
   --color-brand-border-light: #2c2e38;
@@ -44,6 +46,11 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
+}
+
+.text-brand-neon {
+  color: var(--color-brand-lime-type);
+  text-shadow: var(--shadow-brand-lime-type);
 }
 
 /* Craft Floor: Themed Browser Surfaces */
