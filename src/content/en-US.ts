@@ -19,7 +19,8 @@ export const enUS: SiteContent = {
     ],
   },
   nav: {
-    work: 'WORK',
+    home: 'HOME',
+    work: 'PROJECTS',
     services: 'SERVICES',
     about: 'ABOUT',
     contact: 'CONTACT',

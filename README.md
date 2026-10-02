@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Navbar Navigation Contract
+
+The Navbar has a canonical, deterministic navigation order: Home → Projects → Services → About → Contact. No component, breakpoint, locale, route, or internal state may change this order. Any Navbar change must preserve this hierarchy. Navigation links must always point to real, verifiable destinations. Home sections use the IDs `home`, `projects`, `services`, `about`, and `contact`; links to these sections must use root-relative paths so they also work from other routes.
+
 ## Getting Started
 
 First, run the development server:

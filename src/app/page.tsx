@@ -15,22 +15,22 @@ export default function HomePage() {
 
       {/* Main Content Area */}
       <main id="main-content" className="flex-1 focus:outline-none">
-        {/* 1. Hero Section (Visual Centerpiece, Oversized Type, 3D Object) */}
+        {/* 1. Home */}
         <Hero />
 
-        {/* 2. Philosophy & Manifesto Statement */}
-        <Manifesto />
-
-        {/* 3. Selected Case Studies */}
+        {/* 2. Projects */}
         <SelectedWork />
 
-        {/* 4. Strategic Capabilities & Disciplines */}
+        {/* 3. Services */}
         <Capabilities />
 
-        {/* 5. Technical Rigor & Edge Standard */}
+        {/* 4. About */}
+        <Manifesto />
+
+        {/* Technical standard follows the canonical About section. */}
         <TechStandard />
 
-        {/* 6. High-Conversion CTA & Briefing */}
+        {/* 5. Contact */}
         <CtaConversion />
       </main>
 

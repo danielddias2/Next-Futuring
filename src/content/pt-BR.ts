@@ -19,6 +19,7 @@ export const ptBR: SiteContent = {
     ],
   },
   nav: {
+    home: 'INÍCIO',
     work: 'PROJETOS',
     services: 'SERVIÇOS',
     about: 'SOBRE',

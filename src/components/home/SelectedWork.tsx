@@ -11,9 +11,10 @@ export function SelectedWork() {
 
   return (
     <section
-      id="work"
+      id="projects"
+      tabIndex={-1}
       aria-label="Selected Client Cases"
-      className="py-24 sm:py-32 lg:py-36 bg-[#050505] overflow-hidden"
+      className="scroll-mt-24 py-24 sm:py-32 lg:py-36 bg-[#050505] overflow-hidden focus:outline-none"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -35,7 +36,7 @@ export function SelectedWork() {
           </div>
 
           <Link
-            href="#contact"
+            href="/#contact"
             className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-[0.18em] text-[#ccff00] hover:text-white uppercase transition-colors group"
           >
             <span>{content.selectedWork.viewAll}</span>
@@ -125,7 +126,7 @@ export function SelectedWork() {
                   {/* CTA link */}
                   <div>
                     <Link
-                      href="#contact"
+                      href="/#contact"
                       className="inline-flex items-center gap-2 px-6 py-3 bg-transparent border border-[#2a2b36] hover:border-[#ccff00] hover:bg-[#ccff00] hover:text-black font-display font-bold text-sm tracking-wider uppercase text-white transition-all duration-200"
                     >
                       <span>DISCUSS SIMILAR SCOPE</span>

@@ -8,9 +8,10 @@ export function Manifesto() {
 
   return (
     <section
-      id="manifesto"
+      id="about"
+      tabIndex={-1}
       aria-label="Studio Philosophy"
-      className="relative py-24 sm:py-32 lg:py-40 bg-[#070709] border-t border-b border-[#181820] overflow-hidden"
+      className="scroll-mt-24 relative py-24 sm:py-32 lg:py-40 bg-[#070709] border-t border-b border-[#181820] overflow-hidden focus:outline-none"
     >
       {/* Background Graphic Diagonal Watermark */}
       <div className="absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none opacity-[0.03] font-display font-black text-[20vw] leading-none text-white whitespace-nowrap -rotate-12 translate-x-1/4">

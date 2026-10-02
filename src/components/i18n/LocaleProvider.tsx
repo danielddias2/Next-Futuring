@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState, useTransition } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getContent, SiteContent } from '@/content';
 import {
   isValidLocale,
@@ -14,7 +14,6 @@ interface LocaleContextType {
   detectionSource: string;
   content: SiteContent;
   setLocale: (newLocale: Locale) => void;
-  isPending: boolean;
 }
 
 const LocaleContext = createContext<LocaleContextType | null>(null);
@@ -35,7 +34,6 @@ export function LocaleProvider({
   const [locale, setLocaleState] = useState<Locale>(initialLocale);
   const [country] = useState<string | null>(initialCountry);
   const [detectionSource] = useState<string>(initialSource);
-  const [isPending, startTransition] = useTransition();
 
   // Keep html lang attribute in sync
   useEffect(() => {
@@ -45,22 +43,16 @@ export function LocaleProvider({
   const setLocale = (newLocale: Locale) => {
     if (!isValidLocale(newLocale)) return;
 
-    startTransition(async () => {
-      setLocaleState(newLocale);
+    setLocaleState(newLocale);
 
-      // Set cookie in browser immediately
-      document.cookie = `${LOCALE_COOKIE_NAME}=${newLocale}; path=/; max-age=31536000; SameSite=Lax`;
+    document.cookie = `${LOCALE_COOKIE_NAME}=${newLocale}; path=/; max-age=31536000; SameSite=Lax`;
 
-      // Also persist to API endpoint
-      try {
-        await fetch('/api/locale', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ locale: newLocale }),
-        });
-      } catch (err) {
-        console.error('Failed to sync locale to server:', err);
-      }
+    void fetch('/api/locale', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ locale: newLocale }),
+    }).catch((error: unknown) => {
+      console.error('Failed to sync locale to server:', error);
     });
   };
 
@@ -74,7 +66,6 @@ export function LocaleProvider({
         detectionSource,
         content,
         setLocale,
-        isPending,
       }}
     >
       {children}

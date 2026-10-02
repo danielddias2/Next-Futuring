@@ -15,6 +15,8 @@ export function Navbar() {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const firstMobileLinkRef = useRef<HTMLAnchorElement>(null);
   const mobileMenuTriggerRef = useRef<HTMLButtonElement>(null);
+  const languageDropdownRef = useRef<HTMLDivElement>(null);
+  const languageTriggerRef = useRef<HTMLButtonElement>(null);
 
   const openMobileMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     mobileMenuTriggerRef.current = event.currentTarget;
@@ -45,6 +47,19 @@ export function Navbar() {
   }, [mobileMenuOpen]);
 
   useEffect(() => {
+    if (!langDropdownOpen) return;
+
+    const closeOnOutsidePointer = (event: PointerEvent) => {
+      if (!languageDropdownRef.current?.contains(event.target as Node)) {
+        setLangDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('pointerdown', closeOnOutsidePointer);
+    return () => document.removeEventListener('pointerdown', closeOnOutsidePointer);
+  }, [langDropdownOpen]);
+
+  useEffect(() => {
     if (mobileMenuOpen) {
       firstMobileLinkRef.current?.focus();
     } else if (mobileMenuTriggerRef.current) {
@@ -57,6 +72,9 @@ export function Navbar() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        if (languageDropdownRef.current?.contains(document.activeElement)) {
+          languageTriggerRef.current?.focus();
+        }
         setLangDropdownOpen(false);
         setMobileMenuOpen(false);
       }
@@ -66,10 +84,11 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: content.nav.work, href: '#work' },
-    { label: content.nav.services, href: '#services' },
-    { label: content.nav.about, href: '#manifesto' },
-    { label: content.nav.contact, href: '#contact' },
+    { label: content.nav.home, href: '/#home' },
+    { label: content.nav.work, href: '/#projects' },
+    { label: content.nav.services, href: '/#services' },
+    { label: content.nav.about, href: '/#about' },
+    { label: content.nav.contact, href: '/#contact' },
   ];
 
   return (
@@ -86,9 +105,9 @@ export function Navbar() {
           <div className="flex items-center justify-between gap-4">
             {/* BRAND LOGO: Preserving 100% original Next Futuring PNG asset */}
             <Link
-              href="/"
+              href="/#home"
               className="group flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ccff00]"
-              aria-label="Next Futuring Home"
+              aria-label={content.nav.home}
             >
               <div className="relative w-[130px] h-[44px] sm:w-[155px] sm:h-[50px] transition-transform duration-200 group-hover:scale-[1.02]">
                 <Image
@@ -133,12 +152,22 @@ export function Navbar() {
               )}
 
               {/* Language Selector Dropdown */}
-              <div className="relative">
+              <div
+                className="relative"
+                ref={languageDropdownRef}
+                onBlur={(event) => {
+                  const nextTarget = event.relatedTarget;
+                  if (!(nextTarget instanceof Node) || !event.currentTarget.contains(nextTarget)) {
+                    setLangDropdownOpen(false);
+                  }
+                }}
+              >
                 <button
                   type="button"
                   onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                  onBlur={() => setTimeout(() => setLangDropdownOpen(false), 200)}
+                  ref={languageTriggerRef}
                   aria-expanded={langDropdownOpen}
+                  aria-haspopup="true"
                   aria-label={content.nav.language}
                   className="flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-[#0c0c0f] border border-[#1f2026] text-xs font-mono font-medium text-zinc-300 hover:text-white hover:border-[#ccff00]/40 transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#ccff00]"
                 >
@@ -155,7 +184,6 @@ export function Navbar() {
 
                 {langDropdownOpen && (
                   <div
-                    role="menu"
                     className="absolute right-0 mt-2 w-48 py-1.5 bg-[#0e0e12] border border-[#22222a] shadow-2xl rounded-sm backdrop-blur-xl z-50 animate-in fade-in zoom-in-95 duration-100"
                   >
                     <div className="px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-zinc-500 border-b border-[#1f2026]">
@@ -165,10 +193,11 @@ export function Navbar() {
                       <button
                         key={item.code}
                         type="button"
-                        role="menuitem"
+                        aria-pressed={locale === item.code}
                         onClick={() => {
                           setLocale(item.code);
                           setLangDropdownOpen(false);
+                          languageTriggerRef.current?.focus();
                         }}
                         className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between transition-colors ${
                           locale === item.code
@@ -188,7 +217,7 @@ export function Navbar() {
 
               {/* PRIMARY CTA */}
               <Link
-                href="#contact"
+                href="/#contact"
                 className="group relative inline-flex items-center gap-2 px-5 py-2.5 bg-[#ccff00] hover:bg-[#d8ff1a] text-black font-display font-bold text-sm tracking-wider uppercase transition-all duration-200 shadow-[0_0_24px_rgba(204,255,0,0.25)] hover:shadow-[0_0_32px_rgba(204,255,0,0.4)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
                 <span>{content.nav.cta}</span>
@@ -203,7 +232,7 @@ export function Navbar() {
                 type="button"
                 onClick={openMobileMenu}
                 className="px-2 py-1 bg-[#121216] border border-[#22222a] rounded text-[11px] font-mono font-bold text-[#ccff00]"
-                aria-label="Current language"
+                aria-label={content.nav.language}
               >
                 {SUPPORTED_LOCALES.find((l) => l.code === locale)?.shortLabel || 'EN'}
               </button>
@@ -299,7 +328,7 @@ export function Navbar() {
             </div>
 
             <Link
-              href="#contact"
+                href="/#contact"
               onClick={closeMobileMenu}
               className="w-full flex items-center justify-center gap-2 py-4 bg-[#ccff00] text-black font-display font-bold text-lg tracking-wider uppercase shadow-[0_0_24px_rgba(204,255,0,0.3)]"
             >

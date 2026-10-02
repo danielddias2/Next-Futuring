@@ -19,6 +19,7 @@ export const fr: SiteContent = {
     ],
   },
   nav: {
+    home: 'ACCUEIL',
     work: 'PROJETS',
     services: 'SERVICES',
     about: 'À PROPOS',

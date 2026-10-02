@@ -10,8 +10,9 @@ export function Capabilities() {
   return (
     <section
       id="services"
+      tabIndex={-1}
       aria-label="Capabilities and Services"
-      className="py-24 sm:py-32 lg:py-36 bg-[#07070a] border-t border-b border-[#17171e]"
+      className="scroll-mt-24 py-24 sm:py-32 lg:py-36 bg-[#07070a] border-t border-b border-[#17171e] focus:outline-none"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
