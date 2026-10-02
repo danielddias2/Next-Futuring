@@ -101,14 +101,14 @@ export function Footer() {
               </div>
               <ul className="space-y-2 text-xs font-mono text-zinc-400 uppercase">
                 <li>
-                  <a href="/#contact" className="hover:text-white transition-colors">
+                  <Link href="/#contact" className="hover:text-white transition-colors">
                     {content.footer.privacy}
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/#contact" className="hover:text-white transition-colors">
+                  <Link href="/#contact" className="hover:text-white transition-colors">
                     {content.footer.terms}
-                  </a>
+                  </Link>
                 </li>
                 <li className="text-[10px] text-zinc-600 pt-2">
                   VERCEL EDGE DEPLOYED

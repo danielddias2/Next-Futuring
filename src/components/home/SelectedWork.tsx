@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
@@ -8,6 +8,36 @@ import { useLocale } from '@/components/i18n/LocaleProvider';
 
 export function SelectedWork() {
   const { content } = useLocale();
+  const [touchActiveProjectId, setTouchActiveProjectId] = useState<string | null>(null);
+  const touchResetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (touchResetTimerRef.current) clearTimeout(touchResetTimerRef.current);
+    };
+  }, []);
+
+  const handleProjectPointerDown = (event: React.PointerEvent<HTMLDivElement>, projectId: string) => {
+    if (event.pointerType !== 'touch') return;
+    if (touchResetTimerRef.current) clearTimeout(touchResetTimerRef.current);
+    setTouchActiveProjectId(projectId);
+  };
+
+  const handleProjectPointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== 'touch') return;
+    if (touchResetTimerRef.current) clearTimeout(touchResetTimerRef.current);
+    touchResetTimerRef.current = setTimeout(() => {
+      setTouchActiveProjectId(null);
+      touchResetTimerRef.current = null;
+    }, 420);
+  };
+
+  const handleProjectPointerCancel = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== 'touch') return;
+    if (touchResetTimerRef.current) clearTimeout(touchResetTimerRef.current);
+    setTouchActiveProjectId(null);
+    touchResetTimerRef.current = null;
+  };
 
   return (
     <section
@@ -52,7 +82,12 @@ export function SelectedWork() {
             return (
               <div
                 key={project.id}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center group"
+                className={`project-showcase grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center group ${
+                  touchActiveProjectId === project.id ? 'project-showcase--touch-active' : ''
+                }`}
+                onPointerDown={(event) => handleProjectPointerDown(event, project.id)}
+                onPointerUp={handleProjectPointerUp}
+                onPointerCancel={handleProjectPointerCancel}
               >
                 {/* Project Image Container with Skew Frame */}
                 <div
