@@ -111,7 +111,7 @@ export function Navbar() {
             >
               <div className="relative w-[130px] h-[44px] sm:w-[155px] sm:h-[50px] transition-transform duration-200 group-hover:scale-[1.02]">
                 <Image
-                  src="/brand/logo-cropped.png"
+                  src="/brand/logo-tight.png"
                   alt="Next Futuring"
                   fill
                   sizes="(max-width: 640px) 130px, 155px"
